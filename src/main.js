@@ -4,7 +4,7 @@
 // It should be kept in sync with ../skulpt.py.
 // Order is important!
 
-require("./util.js");
+const {Sk} = require("./util.js");
 
 // Global support functions
 Sk.global["strftime"] = require("strftime");
@@ -12,10 +12,10 @@ Sk.global["strptime"] = require("../support/time-helpers/strptime.js");
 require("setimmediate");
 
 // Skulpt
-require("assert");
-require("./env.js");
-require("./type.js");
-require("./abstract.js");
+Object.assign(Sk, require("assert"));
+Object.assign(Sk, require("./env.js"));
+Object.assign(Sk, require("./type.js"));
+Object.assign(Sk, require("./abstract.js"));
 require("./object.js");
 require("./function.js");
 require("./builtin.js");

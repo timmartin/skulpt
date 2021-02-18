@@ -1,6 +1,4 @@
-if(Sk.builtin === undefined) {
-    Sk.builtin = {};
-}
+const builtin = {};
 
 /**
  * Maps Python dunder names to the Skulpt Javascript function names that
@@ -21,7 +19,7 @@ if(Sk.builtin === undefined) {
  *
  * @type {Object}
  */
-Sk.dunderToSkulpt = {
+const dunderToSkulpt = {
     "__eq__": "ob$eq",
     "__ne__": "ob$ne",
     "__lt__": "ob$lt",
@@ -61,7 +59,7 @@ Sk.dunderToSkulpt = {
     "__set__": ["tp$descr_set", 3]
 };
 
-Sk.setupDunderMethods = function (py3) {
+const setupDunderMethods = function (Sk, py3) {
     if (py3) {
         Sk.dunderToSkulpt["__matmul__"] = "tp$matmul";
         Sk.dunderToSkulpt["__rmatmul__"] = "tp$reflected_matmul";
@@ -75,7 +73,6 @@ Sk.setupDunderMethods = function (py3) {
     }
 };
 
-Sk.exportSymbol("Sk.setupDunderMethods", Sk.setupDunderMethods);
 /**
  *
  * @constructor
@@ -94,7 +91,7 @@ Sk.exportSymbol("Sk.setupDunderMethods", Sk.setupDunderMethods);
  *
  * calling the type or calling an instance of the type? or both?
  */
-Sk.builtin.type = function (name, bases, dict) {
+builtin.type = function (name, bases, dict) {
     var mro;
     var obj;
     var klass;
@@ -413,31 +410,31 @@ Sk.builtin.type = function (name, bases, dict) {
 
 };
 
-Object.defineProperties(Sk.builtin.type.prototype, /**@lends {Sk.builtin.type.prototype}*/ {
+Object.defineProperties(builtin.type.prototype, /**@lends {Sk.builtin.type.prototype}*/ {
     call: { value: Function.prototype.call },
     apply: { value: Function.prototype.apply },
-    ob$type: { value: Sk.builtin.type, writable: true },
+    ob$type: { value: builtin.type, writable: true },
     tp$name: { value: "type", writable: true },
-    tp$base: { value: Sk.builtin.object, writable: true },
+    tp$base: { value: builtin.object, writable: true },
     sk$type: { value: true },
 });
 
 /**
  *
  */
-Sk.builtin.type.makeTypeObj = function (name, newedInstanceOfType) {
+builtin.type.makeTypeObj = function (name, newedInstanceOfType) {
     Sk.builtin.type.makeIntoTypeObj(name, newedInstanceOfType);
     return newedInstanceOfType;
 };
 
-Sk.builtin.type.makeIntoTypeObj = function (name, t) {
+builtin.type.makeIntoTypeObj = function (name, t) {
     Sk.asserts.assert(name !== undefined);
     Sk.asserts.assert(t !== undefined);
     Object.setPrototypeOf(t, Sk.builtin.type.prototype);
     return t;
 };
 
-Sk.builtin.type.prototype["$r"] = function () {
+builtin.type.prototype["$r"] = function () {
     let mod = this.prototype.__module__;
     let cname = "";
     let ctype = "class";
@@ -456,7 +453,7 @@ Sk.builtin.type.prototype["$r"] = function () {
 
 
 // basically the same as GenericGetAttr except looks in the proto instead
-Sk.builtin.type.prototype.tp$getattr = function (pyName, canSuspend) {
+builtin.type.prototype.tp$getattr = function (pyName, canSuspend) {
     var res;
     var tp = this;
     var descr;
@@ -469,7 +466,7 @@ Sk.builtin.type.prototype.tp$getattr = function (pyName, canSuspend) {
         }
     }
 
-    descr = Sk.builtin.type.typeLookup(tp, pyName);
+    descr = builtin.type.typeLookup(tp, pyName);
 
     //print("type.tpgetattr descr", descr, descr.tp$name, descr.func_code, name);
     if (descr !== undefined && descr !== null && descr.ob$type !== undefined) {
@@ -490,7 +487,7 @@ Sk.builtin.type.prototype.tp$getattr = function (pyName, canSuspend) {
     return undefined;
 };
 
-Sk.builtin.type.prototype.tp$setattr = function (pyName, value) {
+builtin.type.prototype.tp$setattr = function (pyName, value) {
     // class attributes are direct properties of the object
     if (this.sk$klass === undefined) {
         throw new Sk.builtin.TypeError("can't set attributes of built-in/extension type '" + this.prototype.tp$name + "'");
@@ -503,7 +500,7 @@ Sk.builtin.type.prototype.tp$setattr = function (pyName, value) {
     }
 };
 
-Sk.builtin.type.typeLookup = function (type, pyName) {
+builtin.type.typeLookup = function (type, pyName) {
     var mro = type.tp$mro;
     var base;
     var res;
@@ -536,7 +533,7 @@ Sk.builtin.type.typeLookup = function (type, pyName) {
     return undefined;
 };
 
-Sk.builtin.type.mroMerge_ = function (seqs) {
+builtin.type.mroMerge_ = function (seqs) {
     /*
      var tmp = [];
      for (var i = 0; i < seqs.length; ++i)
@@ -607,7 +604,7 @@ Sk.builtin.type.mroMerge_ = function (seqs) {
     }
 };
 
-Sk.builtin.type.buildMRO_ = function (klass) {
+builtin.type.buildMRO_ = function (klass) {
     // MERGE(klass + mro(bases) + bases)
     var i;
     var bases;
@@ -647,19 +644,19 @@ Sk.builtin.type.buildMRO_ = function (klass) {
  * (http://mail.python.org/pipermail/python-dev/2002-October/029176.html) when
  * discussing its addition to Python.
  */
-Sk.builtin.type.buildMRO = function (klass) {
+builtin.type.buildMRO = function (klass) {
     return new Sk.builtin.tuple(Sk.builtin.type.buildMRO_(klass));
 };
 
 
-Sk.builtin.type.prototype["__format__"] = function(self, format_spec) {
+builtin.type.prototype["__format__"] = function(self, format_spec) {
     Sk.builtin.pyCheckArgsLen("__format__", arguments.length, 1, 2);
     return new Sk.builtin.str(self);
 };
 
-Sk.builtin.type.pythonFunctions = ["__format__"];
+builtin.type.pythonFunctions = ["__format__"];
 
-Sk.builtin.type.$allocateSlot = function (klass, dunder) {
+builtin.type.$allocateSlot = function (klass, dunder) {
     // allocate a dunder method to a skulpt slot
     const magic_func = klass[dunder];
     let skulpt_name = Sk.dunderToSkulpt[dunder];
@@ -706,4 +703,9 @@ Sk.builtin.type.$allocateSlot = function (klass, dunder) {
             }
         };
     }
+};
+
+module.exports = {
+    builtin,
+    setupDunderMethods,
 };

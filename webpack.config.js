@@ -32,6 +32,16 @@ module.exports = (env, argv) => {
     var assertfile = './assert-dev.js';
     var mod = {};
 
+    var standardRules = [
+        {
+            test: require.resolve('./src/main.js'),
+            loader: 'expose-loader',
+            options: {
+                exposes: ['Sk']
+            }
+        }
+    ];
+
     if (argv.mode === 'production') {
         opt = {
             noEmitOnErrors: true,
@@ -50,14 +60,18 @@ module.exports = (env, argv) => {
         outfile = 'skulpt.min.js';
         assertfile = './assert-prod.js';
         mod = {
-            rules: [
+            rules: standardRules.concat([
                 {
                      test: /\.js$/,
                      enforce: 'pre',
                      exclude: styleexcludes,
                      loader: 'eslint-loader'
                 }
-            ]
+            ])
+        };
+    } else {
+        mod = {
+            rules: standardRules,
         };
     }
 
