@@ -30,6 +30,10 @@
     "profile": "node --prof --no-logfile-per-isolate --log-internal-timer-events support/run/runfile.js -o",
     "postprofile": "node --prof-process v8.log"
   },
+  "files": [
+    "dist/**/*",
+    "main.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/skulpt/skulpt.git"
