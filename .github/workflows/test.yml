@@ -1,7 +1,8 @@
 name: unit-test
 on:
   push:
-    tags-ignore: v*
+    branches: "*"
+    tags-ignore: "v*"
 jobs:
   unit-test:
     runs-on: ubuntu-latest
