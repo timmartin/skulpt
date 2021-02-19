@@ -1,7 +1,7 @@
 {
-  "name": "skulpt",
+  "name": "@timmartin2/skulpt",
   "version": "1.2.0",
-  "description": "Skulpt is a Javascript implementation of Python 2.x. Python that runs in your browser!",
+  "description": "Repackaged version of Skulpt, a Javascript implementation of Python",
   "keywords": [
     "skulpt"
   ],
@@ -42,7 +42,7 @@
     "name": "Brad Miller"
   },
   "license": "MIT",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "acorn": "^6.1.1",
     "babel-minify": "^0.5.0",
