@@ -1,6 +1,6 @@
 {
   "name": "@timmartin2/skulpt",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Repackaged version of Skulpt, a Javascript implementation of Python",
   "keywords": [
     "skulpt"
