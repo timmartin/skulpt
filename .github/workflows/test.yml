@@ -1,5 +1,7 @@
 name: unit-test
-on: [push]
+on:
+  push:
+    tags-ignore: v*
 jobs:
   unit-test:
     runs-on: ubuntu-latest
@@ -9,6 +11,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - run: npm install
+      - run: npm ci
       - run: npm run build
       - run: npm test
