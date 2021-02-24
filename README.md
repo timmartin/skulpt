@@ -1,8 +1,11 @@
 # Welcome to Skulpt
 
-[![Join the chat at https://gitter.im/skulpt/skulpt](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/skulpt/skulpt?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+This package is an unofficial version of Skulpt. It's intended to roughly track the upstream development of Skulpt, but
+may include patches that I personally find useful. For the time being it also has a much more up-to-date NPM package.
+The major and minor version numbers of this package will track those of Skulpt upstream, but the patch number may
+differ.
 
-Skulpt is a Javascript implementation of Python 2.x. Python that runs in your browser! Python that runs on your iPad! Its being used several projects including, [Interactive Python Textbooks](http://interactivepython.org) -- You can see skulpt in action there.  Try out [some turtle graphics examples](http://interactivepython.org/runestone/static/thinkcspy/PythonTurtle/InstancesAHerdofTurtles.html) to see Skulpt in action.
+Skulpt is a Javascript implementation of Python. Python that runs in your browser! Python that runs on your iPad! Its being used several projects including, [Interactive Python Textbooks](http://interactivepython.org) -- You can see skulpt in action there.  Try out [some turtle graphics examples](http://interactivepython.org/runestone/static/thinkcspy/PythonTurtle/InstancesAHerdofTurtles.html) to see Skulpt in action.
 
 [![Build Status](https://travis-ci.org/skulpt/skulpt.png)](https://travis-ci.org/skulpt/skulpt)
 
@@ -42,7 +45,7 @@ Welcome to the Skulpt developer community! We welcome new developers of all leve
 
 6. Make fully workable, and expand support for DOM access as part of the standard library.
 
-7. Expand and improve overall language coverage.   Currently Skulpt does an excellent job of meeting the 80/20 rule.  We cover the vast majority of the language features used by the 80% (maybe even 90%) of the code.  But there are builtins that are not implemented at all, and there are builtins with only partial implementations.  
+7. Expand and improve overall language coverage.   Currently Skulpt does an excellent job of meeting the 80/20 rule.  We cover the vast majority of the language features used by the 80% (maybe even 90%) of the code.  But there are builtins that are not implemented at all, and there are builtins with only partial implementations.
 
 8. Implement the hooks for a debugger. This may be a half step towards 1 or may be in a completely different direction, but allowing students to debug line by line a program they have written would have some real benefit.
 
