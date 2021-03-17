@@ -32,7 +32,9 @@
   },
   "files": [
     "dist/**/*",
-    "main.js"
+    "src/**/*.d.ts",
+    "main.js",
+    "main.d.ts"
   ],
   "repository": {
     "type": "git",
