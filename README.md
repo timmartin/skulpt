@@ -7,7 +7,8 @@ differ.
 
 Skulpt is a Javascript implementation of Python. Python that runs in your browser! Python that runs on your iPad! Its being used several projects including, [Interactive Python Textbooks](http://interactivepython.org) -- You can see skulpt in action there.  Try out [some turtle graphics examples](http://interactivepython.org/runestone/static/thinkcspy/PythonTurtle/InstancesAHerdofTurtles.html) to see Skulpt in action.
 
-[![Build Status](https://travis-ci.org/skulpt/skulpt.png)](https://travis-ci.org/skulpt/skulpt)
+![Build Status](https://github.com/skulpt/skulpt/actions/workflows/test.yml/badge.svg)
+
 
 ## Origins
 
